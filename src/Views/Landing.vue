@@ -12,7 +12,7 @@ const venueCoordinates = {
 }
 
 // Alias para copiar al portapapeles
-const bankAlias = 'La rompemos'
+const bankAlias = 'bodaluyximes'
 const copyButtonText = ref('Copiar alias')
 
 const copyToClipboard = async () => {
@@ -46,6 +46,9 @@ const copyToClipboard = async () => {
       :location-name="venueCoordinates.locationName"
       :address="venueCoordinates.address"
     />
+    
+    <img src="@/assets/3_drescode.svg" alt="Drescode" class="invitation-image">
+
 
     <img src="@/assets/4_save_the_date.svg" alt="Guardar la Fecha" class="invitation-image">
 
