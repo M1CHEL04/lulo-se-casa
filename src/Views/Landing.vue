@@ -12,7 +12,7 @@ const venueCoordinates = {
 }
 
 // Alias para copiar al portapapeles
-const bankAlias = 'bodaluyximes'
+const bankAlias = 'bodaluloyxime'
 const copyButtonText = ref('Copiar alias')
 
 const copyToClipboard = async () => {
@@ -76,7 +76,14 @@ const copyToClipboard = async () => {
     <!-- Sección 6: Guardar la fecha + Confirmar asistencia -->
     <div class="section">
       <img src="@/assets/4_save_the_date.svg" alt="Guardar la Fecha" class="invitation-image">
-      <a class="confirm-attendance-button" href="https://forms.gle/5dRSbUNw1rykz6g2A">Confirmar tu asistencia</a>
+      <a class="confirm-attendance-button" href="https://forms.gle/5dRSbUNw1rykz6g2A">
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+          <polyline points="14 2 14 8 20 8"/>
+          <path d="M9 15l2 2 4-4"/>
+        </svg>
+        Confirmar tu asistencia
+      </a>
     </div>
   </div>
 </template>
@@ -87,7 +94,7 @@ const copyToClipboard = async () => {
   align-items: center;
   justify-content: center;
   gap: 0.75rem;
-  margin: 0 auto;
+  margin: 0 auto 2rem; /* Un poco más de espacio debajo */
   padding: clamp(0.875rem, 3vw, 1.25rem) clamp(1.5rem, 5vw, 2.5rem);
   background-color: #632E70;
   color: #D4C1DB;
@@ -100,9 +107,15 @@ const copyToClipboard = async () => {
   box-shadow: 0 4px 12px rgba(99, 46, 112, 0.3);
   cursor: pointer;
   width: 100%;
-  max-width: 650px;
+  max-width: 500px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.confirm-attendance-button svg {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
 }
 
 @media (hover: hover) {
@@ -122,6 +135,10 @@ const copyToClipboard = async () => {
   .confirm-attendance-button {
     padding: 0.75rem 1.25rem;
     font-size: 0.95rem;
+  }
+  .confirm-attendance-button svg {
+    width: 20px;
+    height: 20px;
   }
 }
 
@@ -151,7 +168,7 @@ const copyToClipboard = async () => {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   width: 100%;
-  max-width: 650px;
+  max-width: 500px;
 }
 
 .copy-alias-button svg {
@@ -204,6 +221,8 @@ const copyToClipboard = async () => {
   flex-direction: column;
   align-items: center;
   gap: 1rem;
+  padding: 0 3rem; /* Margen lateral homogéneo para todas las secciones */
+  box-sizing: border-box;
 }
 
 .section:first-child {
@@ -218,33 +237,19 @@ const copyToClipboard = async () => {
   object-fit: contain;
   object-position: center;
   display: block;
-  padding: 0 3rem; /* MÁS PADDING LATERAL = MÁS BORDE */
   box-sizing: border-box;
   min-height: fit-content;
   vertical-align: middle;
   line-height: 0;
 }
 
-.section:first-child .invitation-image {
-  min-height: 100vh;
-  min-height: 100dvh;
-  max-width: 100%;
-  padding: 2rem; /* BORDE EN PRIMERA IMAGEN TAMBIÉN */
-  margin: 0;
-}
 
 @media (max-width: 320px) {
   .wedding-invitation {
     gap: 3rem;
   }
-  
-  .invitation-image {
+  .section {
     padding: 0 2rem;
-    max-width: 100%;
-  }
-  
-  .section:first-child .invitation-image {
-    padding: 1.5rem;
   }
 }
 
@@ -252,13 +257,8 @@ const copyToClipboard = async () => {
   .wedding-invitation {
     gap: 3.5rem;
   }
-  
-  .invitation-image {
+  .section {
     padding: 0 2.25rem;
-  }
-  
-  .section:first-child .invitation-image {
-    padding: 1.75rem;
   }
 }
 
@@ -266,13 +266,8 @@ const copyToClipboard = async () => {
   .wedding-invitation {
     gap: 4rem;
   }
-  
-  .invitation-image {
+  .section {
     padding: 0 2.5rem;
-  }
-  
-  .section:first-child .invitation-image {
-    padding: 2rem;
   }
 }
 
@@ -280,13 +275,8 @@ const copyToClipboard = async () => {
   .wedding-invitation {
     gap: 4rem;
   }
-  
-  .invitation-image {
+  .section {
     padding: 0 2.75rem;
-  }
-  
-  .section:first-child .invitation-image {
-    padding: 2rem;
   }
 }
 
@@ -294,14 +284,8 @@ const copyToClipboard = async () => {
   .wedding-invitation {
     gap: 4.5rem;
   }
-  
-  .invitation-image {
+  .section {
     padding: 0 3rem;
-    max-width: 500px;
-  }
-  
-  .section:first-child .invitation-image {
-    padding: 2rem;
   }
 }
 
@@ -309,14 +293,8 @@ const copyToClipboard = async () => {
   .wedding-invitation {
     gap: 5rem;
   }
-  
-  .invitation-image {
+  .section {
     padding: 0 3.5rem;
-    max-width: 500px;
-  }
-  
-  .section:first-child .invitation-image {
-    padding: 2.5rem;
   }
 }
 
@@ -324,25 +302,14 @@ const copyToClipboard = async () => {
   .wedding-invitation {
     gap: 5rem;
   }
-  
-  .invitation-image {
+  .section {
     padding: 0 4rem;
-    max-width: 500px;
-  }
-  
-  .section:first-child .invitation-image {
-    padding: 2.5rem;
   }
 }
 
 @media (orientation: landscape) and (max-height: 500px) {
-  .invitation-image {
+  .section {
     padding: 0 2.5rem;
-  }
-  
-  .section:first-child .invitation-image {
-    min-height: 100vh;
-    padding: 1.5rem;
   }
 }
 
@@ -355,14 +322,9 @@ const copyToClipboard = async () => {
 }
 
 @supports (padding: max(0px)) {
-  .invitation-image {
+  .section {
     padding-left: max(2.5rem, env(safe-area-inset-left));
     padding-right: max(2.5rem, env(safe-area-inset-right));
-  }
-  
-  .section:first-child .invitation-image {
-    padding-top: max(2rem, env(safe-area-inset-top));
-    padding-bottom: max(2rem, env(safe-area-inset-bottom));
   }
 }
 </style>

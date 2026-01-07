@@ -109,9 +109,50 @@ const openInWaze = () => {
   gap: 1.5rem;
 }
 
+/* Overrides para respetar el mismo margen lateral que las imágenes */
+.map-section { padding: 0 3rem; }
+
+@media (max-width: 320px) {
+  .map-section { padding: 0 2rem; }
+}
+
+@media (min-width: 321px) and (max-width: 374px) {
+  .map-section { padding: 0 2.25rem; }
+}
+
+@media (min-width: 375px) and (max-width: 428px) {
+  .map-section { padding: 0 2.5rem; }
+}
+
+@media (min-width: 429px) and (max-width: 480px) {
+  .map-section { padding: 0 2.75rem; }
+}
+
+@media (min-width: 481px) and (max-width: 767px) {
+  .map-section { padding: 0 3rem; }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .map-section { padding: 0 3.5rem; }
+}
+
+@media (min-width: 1025px) {
+  .map-section { padding: 0 4rem; }
+}
+
+@media (orientation: landscape) and (max-height: 500px) {
+  .map-section { padding: 0 2.5rem; }
+}
+
+@supports (padding: max(0px)) {
+  .map-section {
+    padding-left: max(2.5rem, env(safe-area-inset-left));
+    padding-right: max(2.5rem, env(safe-area-inset-right));
+  }
+}
 .map-container {
   width: 100%;
-  max-width: 450px; /* Mismo ancho que las im\u00e1genes */
+  max-width: 500px; /* Mismo ancho que las imágenes */
   height: clamp(250px, 40vh, 400px);
   border: 4px solid #632E70;
   border-radius: 16px;
@@ -139,7 +180,7 @@ const openInWaze = () => {
   flex-direction: column;
   gap: 1rem;
   width: 100%;
-  max-width: 450px; /* Consistente con el ancho de las im\u00e1genes */
+  max-width: 500px; /* Consistente con el ancho de las imágenes */
 }
 
 .nav-button {
