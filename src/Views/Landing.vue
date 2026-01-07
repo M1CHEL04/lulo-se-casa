@@ -228,6 +228,10 @@ const copyToClipboard = async () => {
 .section:first-child {
   gap: 0;
   margin-bottom: 0;
+  min-height: 100vh; /* Ocupa el alto de la pantalla para mostrar solo la primera imagen al ingresar */
+  justify-content: center; /* Centra verticalmente la imagen principal */
+  padding-top: clamp(1rem, 6vh, 3rem); /* margen superior interno */
+  padding-bottom: clamp(1rem, 6vh, 3rem); /* margen inferior interno, mantiene estética */
 }
 
 .invitation-image {
@@ -325,6 +329,10 @@ const copyToClipboard = async () => {
   .section {
     padding-left: max(2.5rem, env(safe-area-inset-left));
     padding-right: max(2.5rem, env(safe-area-inset-right));
+  }
+  .section:first-child {
+    padding-top: max(1rem, env(safe-area-inset-top));
+    padding-bottom: max(1rem, env(safe-area-inset-bottom));
   }
 }
 </style>
