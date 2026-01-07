@@ -69,7 +69,7 @@ const openInGoogleMaps = () => {
 }
 
 const openInWaze = () => {
-  const url = 'https://www.waze.com/ul?ll=-34.9423244,-58.1586701&navigate=yes&zoom=17'
+  const url = 'https://waze.com/ul/h69y9hwfnh'
   window.open(url, '_blank')
 }
 </script>
