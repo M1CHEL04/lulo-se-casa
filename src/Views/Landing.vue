@@ -231,12 +231,20 @@ const copyToClipboard = async () => {
 
 .section:first-child {
   gap: 0;
-  margin-bottom: 0;
+  margin-bottom: -4rem; /* Compensa el gap de 4rem del contenedor para que el espacio abajo sea igual al de arriba */
   min-height: 100vh; /* Ocupa el alto de la pantalla para mostrar solo la primera imagen al ingresar */
   justify-content: center; /* Centra verticalmente la imagen principal */
   padding-top: clamp(1rem, 6vh, 3rem); /* margen superior interno */
   padding-bottom: clamp(1rem, 6vh, 3rem); /* margen inferior interno, mantiene estética */
 }
+
+
+/* Entre la primera y la segunda sección no sumamos margen extra,
+   así el espacio visible abajo de la primera es simétrico al de arriba */
+.wedding-invitation > .section:nth-of-type(2) {
+  margin-top: 0;
+}
+
 
 .invitation-image {
   width: 100%;
