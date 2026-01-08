@@ -94,7 +94,7 @@ const copyToClipboard = async () => {
   align-items: center;
   justify-content: center;
   gap: 0.75rem;
-  margin: 0 auto 2rem; /* Un poco más de espacio debajo */
+  margin: 0 auto 4rem; /* Un poco más de espacio debajo */
   padding: clamp(0.875rem, 3vw, 1.25rem) clamp(1.5rem, 5vw, 2.5rem);
   background-color: #632E70;
   color: #D4C1DB;
