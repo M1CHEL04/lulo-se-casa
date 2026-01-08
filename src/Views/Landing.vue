@@ -225,6 +225,10 @@ const copyToClipboard = async () => {
   box-sizing: border-box;
 }
 
+.section:not(:first-child) {
+  margin-top: clamp(1.5rem, 4vw, 2.75rem);
+} 
+
 .section:first-child {
   gap: 0;
   margin-bottom: 0;
