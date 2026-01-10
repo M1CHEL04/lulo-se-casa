@@ -1,7 +1,7 @@
 <script setup lang="ts">
 // Invitación de Casamiento
 import MapLocation from '@/components/MapLocation.vue'
-import { ref } from 'vue'
+import { ref, onMounted, onBeforeUnmount } from 'vue'
 
 // Coordenadas de Quinta Pepe Reina
 const venueCoordinates = {
@@ -14,6 +14,47 @@ const venueCoordinates = {
 // Alias para copiar al portapapeles
 const bankAlias = 'bodaluloyxime'
 const copyButtonText = ref('Copiar alias')
+
+const showScrollArrow = ref(true)
+
+const handleScroll = () => {
+  const viewportHeight = window.innerHeight
+  const pageHeight = document.documentElement.scrollHeight
+
+  // Si no hay suficiente contenido para scrollear, no mostramos la flecha
+  if (pageHeight <= viewportHeight + 16) {
+    showScrollArrow.value = false
+    return
+  }
+
+  const scrollY = window.scrollY || window.pageYOffset
+
+  // Mostramos la flecha solo cuando el usuario está cerca de la parte
+  // superior (primer "pantallazo" / primera sección). Si baja más que
+  // este umbral, se oculta, y vuelve a aparecer si vuelve a subir.
+  showScrollArrow.value = scrollY <= viewportHeight * 0.15
+}
+
+onMounted(() => {
+  handleScroll()
+  window.addEventListener('scroll', handleScroll, { passive: true })
+})
+
+onBeforeUnmount(() => {
+  window.removeEventListener('scroll', handleScroll)
+})
+
+const scrollDown = () => {
+  const nextSection = document.querySelector('.wedding-invitation .section:nth-of-type(2)') as HTMLElement | null
+
+  if (nextSection) {
+    const rect = nextSection.getBoundingClientRect()
+    const target = window.scrollY + rect.top - 24
+    window.scrollTo({ top: target, behavior: 'smooth' })
+  } else {
+    window.scrollBy({ top: window.innerHeight * 0.8, behavior: 'smooth' })
+  }
+}
 
 const copyToClipboard = async () => {
   try {
@@ -85,6 +126,20 @@ const copyToClipboard = async () => {
         Confirmar tu asistencia
       </a>
     </div>
+
+    <div
+      v-if="showScrollArrow"
+      class="scroll-indicator"
+      @click="scrollDown"
+    >
+      <span class="scroll-indicator__text">Deslizá para ver más</span>
+      <div class="scroll-indicator__icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 4v14" />
+          <polyline points="6 14 12 20 18 14" />
+        </svg>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -94,7 +149,7 @@ const copyToClipboard = async () => {
   align-items: center;
   justify-content: center;
   gap: 0.75rem;
-  margin: 0 auto 2rem; /* Un poco más de espacio debajo */
+  margin: 0 auto 4rem; /* Un poco más de espacio debajo */
   padding: clamp(0.875rem, 3vw, 1.25rem) clamp(1.5rem, 5vw, 2.5rem);
   background-color: #632E70;
   color: #D4C1DB;
@@ -213,6 +268,88 @@ const copyToClipboard = async () => {
   flex-direction: column;
   align-items: center;
   gap: 4rem; /* ESPACIO FIJO Y CONSISTENTE ENTRE SECCIONES */
+}
+
+.scroll-indicator {
+  position: fixed;
+  left: 50%;
+  bottom: clamp(1.5rem, 4vh, 2.5rem);
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  cursor: pointer;
+  z-index: 20;
+  user-select: none;
+  text-align: center;
+}
+
+.scroll-indicator__text {
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: #7a3a87;
+}
+
+.scroll-indicator__icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 999px;
+  border: 2px solid rgba(99, 46, 112, 0.55);
+  background: radial-gradient(circle at 30% 0%, rgba(255, 255, 255, 0.9), rgba(212, 193, 219, 0.4));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 9px 20px rgba(99, 46, 112, 0.35);
+  color: #632E70;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  animation: scroll-float 2.2s ease-in-out infinite;
+}
+
+.scroll-indicator__icon svg {
+  width: 22px;
+  height: 22px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  animation: scroll-arrow 1.4s ease-in-out infinite;
+}
+
+@media (hover: hover) {
+  .scroll-indicator:hover .scroll-indicator__icon {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 26px rgba(99, 46, 112, 0.42);
+    border-color: rgba(99, 46, 112, 0.9);
+  }
+}
+
+.scroll-indicator:active .scroll-indicator__icon {
+  transform: translateY(0);
+  box-shadow: 0 5px 14px rgba(99, 46, 112, 0.35);
+}
+
+@keyframes scroll-float {
+  0%, 100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, 6px, 0);
+  }
+}
+
+@keyframes scroll-arrow {
+  0%, 100% {
+    transform: translateY(0);
+    opacity: 0.8;
+  }
+  50% {
+    transform: translateY(3px);
+    opacity: 1;
+  }
 }
 
 .section {
