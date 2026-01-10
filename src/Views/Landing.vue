@@ -118,7 +118,7 @@ const copyToClipboard = async () => {
     <div class="section">
       <img src="@/assets/4_save_the_date.svg" alt="Guardar la Fecha" class="invitation-image">
       <a class="confirm-attendance-button" href="https://forms.gle/5dRSbUNw1rykz6g2A">
-        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
           <polyline points="14 2 14 8 20 8"/>
           <path d="M9 15l2 2 4-4"/>
@@ -130,7 +130,6 @@ const copyToClipboard = async () => {
     <div
       v-if="showScrollArrow"
       class="scroll-indicator"
-      @click="scrollDown"
     >
       <span class="scroll-indicator__text">Deslizá para ver más</span>
       <div class="scroll-indicator__icon">
@@ -144,18 +143,19 @@ const copyToClipboard = async () => {
 </template>
 
 <style scoped>
-.confirm-attendance-button {
+.confirm-attendance-button,
+.copy-alias-button {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 0.75rem;
-  margin: 0 auto 4rem; /* Un poco más de espacio debajo */
   padding: clamp(0.875rem, 3vw, 1.25rem) clamp(1.5rem, 5vw, 2.5rem);
   background-color: #632E70;
   color: #D4C1DB;
   text-decoration: none;
   font-size: clamp(1rem, 4vw, 1.35rem);
   font-weight: 600;
+  line-height: 1;
   border-radius: 50px;
   border: none;
   transition: all 0.3s ease;
@@ -167,9 +167,18 @@ const copyToClipboard = async () => {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.confirm-attendance-button svg {
-  width: 22px;
-  height: 22px;
+.confirm-attendance-button {
+  margin: 0 auto 4rem; /* Un poco más de espacio debajo */
+}
+
+.copy-alias-button {
+  margin: 0 auto;
+}
+
+.confirm-attendance-button svg,
+.copy-alias-button svg {
+  width: 20px;
+  height: 20px;
   flex-shrink: 0;
 }
 
@@ -191,9 +200,10 @@ const copyToClipboard = async () => {
     padding: 0.75rem 1.25rem;
     font-size: 0.95rem;
   }
-  .confirm-attendance-button svg {
-    width: 20px;
-    height: 20px;
+  .confirm-attendance-button svg,
+  .copy-alias-button svg {
+    width: 18px;
+    height: 18px;
   }
 }
 
@@ -203,33 +213,6 @@ const copyToClipboard = async () => {
     font-size: 1rem;
   }
 }
-
-.copy-alias-button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.75rem;
-  margin: 0 auto;
-  padding: clamp(0.875rem, 3vw, 1.25rem) clamp(1.5rem, 5vw, 2.5rem);
-  background-color: #632E70;
-  color: #D4C1DB;
-  border: none;
-  border-radius: 50px;
-  font-size: clamp(1rem, 4vw, 1.35rem);
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(99, 46, 112, 0.3);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  width: 100%;
-  max-width: 500px;
-}
-
-.copy-alias-button svg {
-  flex-shrink: 0;
-}
-
 @media (hover: hover) {
   .copy-alias-button:hover {
     background-color: #7a3a87;
@@ -247,11 +230,6 @@ const copyToClipboard = async () => {
   .copy-alias-button {
     padding: 0.75rem 1.25rem;
     font-size: 0.95rem;
-  }
-  
-  .copy-alias-button svg {
-    width: 18px;
-    height: 18px;
   }
 }
 
@@ -279,7 +257,7 @@ const copyToClipboard = async () => {
   flex-direction: column;
   align-items: center;
   gap: 0.6rem;
-  cursor: pointer;
+  cursor: default;
   z-index: 20;
   user-select: none;
   text-align: center;

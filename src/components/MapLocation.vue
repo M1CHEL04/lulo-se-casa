@@ -84,12 +84,12 @@ const openInWaze = () => {
     
     <div class="navigation-buttons">
       <button @click="openInGoogleMaps" class="nav-button google-maps">
-        <img src="https://cdn.simpleicons.org/googlemaps/D4C1DB" width="24" height="24" alt="" aria-hidden="true" />
+        <img src="https://cdn.simpleicons.org/googlemaps/D4C1DB" width="20" height="20" alt="" aria-hidden="true" />
         Abrir en Google Maps
       </button>
       
       <button @click="openInWaze" class="nav-button waze">
-        <img src="https://cdn.simpleicons.org/waze/D4C1DB" width="24" height="24" alt="" aria-hidden="true" />
+        <img src="https://cdn.simpleicons.org/waze/D4C1DB" width="20" height="20" alt="" aria-hidden="true" />
         Abrir en Waze
       </button>
     </div>
@@ -188,12 +188,12 @@ const openInWaze = () => {
   align-items: center;
   justify-content: center;
   gap: 0.75rem;
-  padding: 1rem 2rem;
+  padding: clamp(0.875rem, 3vw, 1.25rem) clamp(1.5rem, 5vw, 2.5rem);
   background-color: #632E70;
   color: #D4C1DB;
   border: none;
   border-radius: 50px;
-  font-size: 1.1rem;
+  font-size: clamp(1rem, 4vw, 1.35rem);
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -204,14 +204,14 @@ const openInWaze = () => {
 }
 
 .nav-button svg {
-  width: 24px;
-  height: 24px;
+  width: 20px;
+  height: 20px;
   flex-shrink: 0;
 }
 
 .nav-button img {
-  width: 24px;
-  height: 24px;
+  width: 20px;
+  height: 20px;
   flex-shrink: 0;
 }
 
@@ -243,8 +243,8 @@ const openInWaze = () => {
   }
   
   .nav-button {
-    padding: 0.875rem 1.5rem;
-    font-size: 1rem;
+    padding: 0.75rem 1.25rem;
+    font-size: 0.95rem;
   }
 }
 
@@ -284,21 +284,11 @@ const openInWaze = () => {
   .map-container {
     height: 350px;
   }
-  
-  .nav-button {
-    padding: 1.125rem 2.25rem;
-    font-size: 1.2rem;
-  }
 }
 
 @media (min-width: 1025px) {
   .map-container {
     height: 400px;
-  }
-  
-  .nav-button {
-    padding: 1.25rem 2.5rem;
-    font-size: 1.25rem;
   }
 }
 
