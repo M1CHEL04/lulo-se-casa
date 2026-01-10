@@ -19,8 +19,13 @@ onMounted(() => {
     center: [props.latitude, props.longitude],
     zoom: 16,
     scrollWheelZoom: false,
-    dragging: true,
-    zoomControl: true
+    dragging: false,
+    doubleClickZoom: false,
+    boxZoom: false,
+    keyboard: false,
+    tap: false as any,
+    touchZoom: false,
+    zoomControl: false
   })
 
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
