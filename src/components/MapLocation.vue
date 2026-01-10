@@ -23,7 +23,6 @@ onMounted(() => {
     doubleClickZoom: false,
     boxZoom: false,
     keyboard: false,
-    tap: false as any,
     touchZoom: false,
     zoomControl: false
   })
