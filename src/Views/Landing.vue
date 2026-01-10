@@ -273,7 +273,7 @@ const copyToClipboard = async () => {
 .scroll-indicator {
   position: fixed;
   left: 50%;
-  bottom: clamp(1.5rem, 4vh, 2.5rem);
+  bottom: clamp(1rem, 3vh, 2rem);
   transform: translateX(-50%);
   display: flex;
   flex-direction: column;
@@ -369,7 +369,8 @@ const copyToClipboard = async () => {
 .section:first-child {
   gap: 0;
   margin-bottom: -4rem; /* Compensa el gap de 4rem del contenedor para que el espacio abajo sea igual al de arriba */
-  min-height: 100vh; /* Ocupa el alto de la pantalla para mostrar solo la primera imagen al ingresar */
+  min-height: 100vh; /* Fallback */
+  min-height: 100dvh; /* Ocupa el alto dinámico de la pantalla para mostrar solo la primera imagen al ingresar, incluso con barras del navegador */
   justify-content: center; /* Centra verticalmente la imagen principal */
   padding-top: clamp(1rem, 6vh, 3rem); /* margen superior interno */
   padding-bottom: clamp(1rem, 6vh, 3rem); /* margen inferior interno, mantiene estética */
@@ -482,6 +483,18 @@ const copyToClipboard = async () => {
   .section:first-child {
     padding-top: max(1rem, env(safe-area-inset-top));
     padding-bottom: max(1rem, env(safe-area-inset-bottom));
+  }
+}
+
+@supports (padding: max(0px)) {
+  .scroll-indicator {
+    bottom: max(0.75rem, calc(env(safe-area-inset-bottom) + 0.5rem));
+  }
+}
+
+@media (max-height: 700px) {
+  .scroll-indicator {
+    bottom: 0.75rem;
   }
 }
 </style>
